@@ -46,6 +46,8 @@ namespace MVCDifferentAttributes.Models
         public string EmailAddress { get; set; }
 
         [DataType(DataType.Url)]
+        [UIHint("OpenInNewWindow")]
+        //So, UIHint attribute is used to specify the name of the template to use to display the data field.
         public string PersonalWebSite { get; set; }
     }
 }
