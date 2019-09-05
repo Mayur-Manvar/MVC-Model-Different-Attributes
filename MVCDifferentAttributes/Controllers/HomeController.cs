@@ -34,5 +34,28 @@ namespace MVCDifferentAttributes.Controllers
             Employee employee = employeeEntities.Employees.Single(x => x.Id == id);
             return View(employee);
         }
+
+        [HttpPost]
+        public ActionResult Edit(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                EmployeeEntities db = new EmployeeEntities();
+                Employee employeeFromDB = db.Employees.Single(x => x.Id == employee.Id);
+
+                // Populate all the properties except EmailAddrees
+                employeeFromDB.FullName = employee.FullName;
+                employeeFromDB.Gender = employee.Gender;
+                employeeFromDB.Age = employee.Age;
+                employeeFromDB.HireDate = employee.HireDate;
+                employeeFromDB.Salary = employee.Salary;
+                employeeFromDB.PersonalWebSite = employee.PersonalWebSite;
+
+                db.ObjectStateManager.ChangeObjectState(employeeFromDB, System.Data.EntityState.Modified);
+                db.SaveChanges();
+                return RedirectToAction("Details", new { id = employee.Id });
+            }
+            return View(employee);
+        }
     }
 }

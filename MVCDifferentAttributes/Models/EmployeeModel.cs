@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.ComponentModel;
+using System.Web.Mvc;
 
 namespace MVCDifferentAttributes.Models
 {
@@ -16,6 +17,8 @@ namespace MVCDifferentAttributes.Models
 
     public class EmployeeMetadata
     {
+        [HiddenInput(DisplayValue = false)]
+        public int Id { get; set; }
         //[DisplayAttribute(Name = "Full Name")]
         //[Display(Name ="Full Name")]
         [DisplayName("Full Name")]
@@ -42,6 +45,7 @@ namespace MVCDifferentAttributes.Models
         [ScaffoldColumn(true)]
         public int? Salary { get; set; }
 
+        [ReadOnly(true)]
         [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
 
