@@ -32,7 +32,7 @@ namespace MVCDifferentAttributes.Models
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}")]
 
         //To get time in 12 hour notation with AM PM
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm:ss tt}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime? HireDate { get; set; }
 
         // If gender is NULL, "Gender not specified" text will be displayed.
