@@ -1,0 +1,12 @@
+﻿@model MVCDifferentAttributes.Models.Employee
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Employee</legend>
+    @*@Html.DisplayFor(x => x)*@
+    @Html.DisplayForModel();
+</fieldset>

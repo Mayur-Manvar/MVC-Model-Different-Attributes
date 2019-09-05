@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVCDifferentAttributes.Models;
+using System.Data;
 
 namespace MVCDifferentAttributes.Controllers
 {
@@ -35,26 +36,20 @@ namespace MVCDifferentAttributes.Controllers
             return View(employee);
         }
 
-        [HttpPost]
-        public ActionResult Edit(Employee employee)
+        [HttpGet]
+        public ActionResult Edit(int id)
         {
-            if (ModelState.IsValid)
-            {
-                EmployeeEntities db = new EmployeeEntities();
-                Employee employeeFromDB = db.Employees.Single(x => x.Id == employee.Id);
+            EmployeeEntities db = new EmployeeEntities();
+            Employee employeeFromDB = db.Employees.Single(x => x.Id == id);
 
-                // Populate all the properties except EmailAddrees
-                employeeFromDB.FullName = employee.FullName;
-                employeeFromDB.Gender = employee.Gender;
-                employeeFromDB.Age = employee.Age;
-                employeeFromDB.HireDate = employee.HireDate;
-                employeeFromDB.Salary = employee.Salary;
-                employeeFromDB.PersonalWebSite = employee.PersonalWebSite;
+            return View(employeeFromDB);
+        }
 
-                db.ObjectStateManager.ChangeObjectState(employeeFromDB, System.Data.EntityState.Modified);
-                db.SaveChanges();
-                return RedirectToAction("Details", new { id = employee.Id });
-            }
+        public ActionResult TemplateExamples(int id)
+        {
+            EmployeeEntities employeeEntities = new EmployeeEntities();
+            Employee employee = employeeEntities.Employees.Single(x => x.Id == id);
+            //ViewData["EmployeeData"] = employee;
             return View(employee);
         }
     }

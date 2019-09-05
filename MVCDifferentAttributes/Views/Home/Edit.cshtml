@@ -1,15 +1,11 @@
-﻿@model MVCDemo.Models.Employee
-@{
-    ViewBag.Title = "Edit";
+﻿@model MVCDifferentAttributes.Models.Employee
+
+@using (Html.BeginForm())
+{
+    @*@Html.EditorFor(x => x)*@
+    @Html.EditorForModel()
 }
 
-<div style="font-family:Arial">
-
-    @using (Html.BeginForm())
-    {
-        @Html.EditorForModel()
-        <br />
-        <br />
-        <input type="submit" value="Save" />
-    }
-</div> 
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
